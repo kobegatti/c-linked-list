@@ -82,7 +82,7 @@ int getLine(char s[], int lim)
 	/* If input was too long, flush the remainder of the input buffer */
 	if (c != '\n')
 	{
-        while ((c = getchar()) != EOF && c != '\n');
+		while ((c = getchar()) != EOF && c != '\n');
 	}
 
 	return i;
