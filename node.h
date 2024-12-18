@@ -10,19 +10,28 @@
 
 #define MAX_STR_LEN 24
 
+#define INDEX_OUT_OF_RANGE(index) \
+	fprintf(stderr, "Error: Index %d is out of range\n", index)
+
 typedef struct Node 
 {
-	int num;
-	char str[MAX_STR_LEN];
+	char id[MAX_STR_LEN];
+	int val;
 	struct Node* next;
 } Node;
 
-Node* append(Node* head, int i, char* c);
+Node* append(Node* head, char* id, int val);
 
-Node* createNode(int i, char* c);
+Node* createNode(char* id, int val);
 
-void freeLinkedList(Node* head);
+Node* delete(Node* head, int index);
+
+int freeLinkedList(Node* head); /* returns number of nodes freed */
+
+Node* insert(Node* head, int index, char* id, int val);
 
 void printList(Node* head);
+
+int search(Node* head, char* id);
 
 #endif
