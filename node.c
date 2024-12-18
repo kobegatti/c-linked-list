@@ -151,6 +151,22 @@ void printList(Node* head)
 	printf("|||\n");
 }
 
+Node* reverse(Node* head)
+{
+	Node* curr = head;
+	Node* end = NULL;
+
+	while(curr)
+	{
+		head = curr;
+		curr = curr->next;
+		head->next = end;
+		end = head;
+	}
+
+	return head;
+}
+
 int search(Node* head, char* id)
 {
 	Node* ptr = head;

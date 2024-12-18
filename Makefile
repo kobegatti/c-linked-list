@@ -8,10 +8,10 @@ EXEC = starterLinkedList
 TEST = testLinkedList
 
 # List of source files (You can modify this list as needed)
-SRC = main.c node.c
+SRC = main.c node.c utils.c
 OBJ = $(SRC:.c=.o)
 
-SRCTEST = test.c node.c
+SRCTEST = test.c node.c utils.c
 OBJTEST = $(SRCTEST:.c=.o)
 
 # Default target: build the executable
