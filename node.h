@@ -31,7 +31,7 @@ int freeLinkedList(Node* head); /* returns number of nodes freed */
 
 Node* insert(Node* head, int index, char* id, int val);
 
-void printList(Node* head);
+void printLinkedList(Node* head);
 
 Node* reverse(Node* head);
 

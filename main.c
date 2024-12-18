@@ -41,7 +41,7 @@ int main(void)
 				head = delete(head, idx);
 				break;
 			case PRINT:
-				printList(head);
+				printLinkedList(head);
 				break;
 			case REVERSE:
 				head = reverse(head);

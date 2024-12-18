@@ -58,16 +58,16 @@ int getIntFromString(void)
 
 	if (errno == ERANGE || end == line)
 	{
-		fprintf(stderr, 
-				"Errno %d: No valid int conversion from '%s'\n", 
-				errno, line);
+		fprintf(stderr,
+			"Errno %d: No valid int conversion from '%s'\n", 
+			errno, line);
 		return -1;
 	}
 
 	return i;
 }
 
-// K&R C Programming Language 2nd Edition Page 29
+/* K&R C Programming Language 2nd Edition Page 29 */
 int getLine(char s[], int lim)
 {
 	int c, i;
@@ -79,8 +79,8 @@ int getLine(char s[], int lim)
 
 	s[i] = '\0';
 
-    // If the input was too long, flush the remainder of the input buffer
-    if (c != '\n') 
+	/* If input was too long, flush the remainder of the input buffer */
+	if (c != '\n')
 	{
         while ((c = getchar()) != EOF && c != '\n');
 	}

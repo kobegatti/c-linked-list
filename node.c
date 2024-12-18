@@ -136,7 +136,7 @@ Node* insert(Node* head, int index, char* id, int val)
 	return head;
 }
 
-void printList(Node* head)
+void printLinkedList(Node* head)
 {
 	Node* ptr = head;
 	int i = 0;
