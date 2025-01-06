@@ -1,4 +1,4 @@
-# glist-c
+# c-linked-list
 Linked List Data Structure and Functions in C
 
 make - Build main and test exes
