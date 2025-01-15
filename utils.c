@@ -21,7 +21,10 @@ int getIndex(void)
 	while(idx < 0)
 	{
 		printf("Enter a node index (zero-based int): ");
-		idx = getIntFromString();
+		while (getIntFromString(&idx))
+		{
+			printf("Enter a node index (zero-based int): ");
+		}
 	}
 	printf("Node index = %d\n", idx);
 
@@ -40,21 +43,23 @@ int getNodeValue(void)
 	int val;
 
 	printf("Enter a node value (int): ");
-	val = getIntFromString();
+	while (getIntFromString(&val))
+	{
+		printf("Enter a node value (int): ");
+	}
 	printf("Node value = %d\n", val);
 
 	return val;
 }
 
-int getIntFromString(void)
+int getIntFromString(int* i)
 {
 	char line[MAXLINE];
 	char* end;
 	errno = 0;
-	int i;
 
 	getLine(line, MAXLINE);
-	i = strtol(line, &end, 10);
+	*i = strtol(line, &end, 10);
 
 	if (errno == ERANGE || end == line)
 	{
@@ -64,7 +69,7 @@ int getIntFromString(void)
 		return -1;
 	}
 
-	return i;
+	return 0;
 }
 
 /* K&R C Programming Language 2nd Edition Page 30 */

@@ -18,7 +18,10 @@ int main(void)
 		printMenu();
 
 		printf("Select an option: ");
-		n = getIntFromString();
+		while (getIntFromString(&n))
+		{
+			printf("Select an option: ");
+		}
 
 		switch(n)
 		{
