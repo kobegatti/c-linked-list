@@ -10,7 +10,7 @@ int main(void)
 	char line[MAXLINE];
 	int n = -1;
 	
-	while(n != EXIT)
+	while (n != EXIT)
 	{
 		int idx = -1, val = -1;
 
@@ -41,7 +41,7 @@ int main(void)
 			case DELETE:
 				idx = getIndex();
 
-				head = delete(head, idx);
+				head = deleteNode(head, idx);
 				break;
 			case PRINT:
 				printLinkedList(head);
@@ -61,6 +61,9 @@ int main(void)
 				{
 					printf("id '%s' found at index %d\n", line, idx);
 				}
+				break;
+			case SORT:
+				head = mergeSort(head);
 				break;
 			case EXIT:
 				printf("Exiting program...\n");

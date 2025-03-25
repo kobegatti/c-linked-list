@@ -11,14 +11,15 @@ void printMenu(void)
 	printf("4. Print\n");
 	printf("5. Reverse\n");
 	printf("6. Search\n");
-	printf("7. Exit\n");
+	printf("7. Sort\n");
+	printf("8. Exit\n");
 }
 
 int getIndex(void)
 {
 	int idx = -1;
 
-	while(idx < 0)
+	while (idx < 0)
 	{
 		printf("Enter a node index (zero-based int): ");
 		while (getIntFromString(&idx))
