@@ -1,42 +1,58 @@
-# Makefile for building the executable
-
+# Compiler and Flags
 CC = gcc
 CFLAGS = -Wall -Wextra -Wpedantic -g -Werror -std=c99
 
-# Set the default executable name if not provided
-EXEC = starterLinkedList
-TEST = testLinkedList
+ifdef DEBUG
+	CFLAGS += -DDEBUG
+endif
 
-# List of source files (You can modify this list as needed)
-SRC = main.c node.c utils.c
-OBJ = $(SRC:.c=.o)
+# Executables
+EXEC = build/main/starterLinkedList
+TEST = build/test/testLinkedList
 
-SRCTEST = test.c node.c utils.c
-OBJTEST = $(SRCTEST:.c=.o)
+# Source and Object files (Separate for main and test)
+SRC_MAIN = main.c node.c utils.c
+OBJ_MAIN = $(patsubst %.c, build/main/%.o, $(SRC_MAIN))
 
-# Default target: build the executable
-all: $(EXEC) $(TEST)
+SRC_TEST = test.c node.c utils.c
+OBJ_TEST = $(patsubst %.c, build/test/%.o, $(SRC_TEST))
 
-# Link the object files to create the executable
-$(EXEC): $(OBJ)
-	$(CC) $(OBJ) -o $(EXEC)
+# Default target: build both main and test
+all: build-main build-test
 
-$(TEST): $(OBJTEST)
-	$(CC) $(OBJTEST) -o $(TEST)
+# Create build directories if they don't exist
+$(shell mkdir -p build/main build/test)
 
-# Compile the source files to object files
-%.o: %.c
+# Custom targets for clarity
+build-main: $(EXEC)  ## Build only the main executable
+build-test: $(TEST)  ## Build only the test executable
+
+# Build main executable
+$(EXEC): $(OBJ_MAIN)
+	$(CC) $(OBJ_MAIN) -o $(EXEC)
+
+# Build test executable
+$(TEST): $(OBJ_TEST)
+	$(CC) $(OBJ_TEST) -o $(TEST)
+
+# Compile source files into object files for main
+build/main/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean up the build artifacts
-clean:
-	rm -f $(OBJ) $(OBJTEST) $(EXEC) $(TEST)
+# Compile source files into object files for test
+build/test/%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-run_main: $(EXEC)
+# Clean up build artifacts
+clean:
+	rm -rf build
+
+# Run main and test
+run-main: $(EXEC)
 	./$(EXEC)
 
-run_test: $(TEST)
+run-test: $(TEST)
 	./$(TEST)
 
 # Phony targets
-.PHONY: all clean
+.PHONY: all clean run-main run-test build-main build-test

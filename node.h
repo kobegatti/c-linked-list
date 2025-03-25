@@ -10,8 +10,12 @@
 #define SORT 7
 #define EXIT 8 
 
-#define INDEX_OUT_OF_RANGE(index) \
-	fprintf(stderr, "Error: Index %d is out of range\n", index)
+#ifdef DEBUG
+	#define INDEX_OUT_OF_RANGE(index) \
+			fprintf(stderr, "Error: Index %d is out of range\n", index)
+#else
+	#define INDEX_OUT_OF_RANGE(index) do {} while (0)
+#endif
 
 #include "utils.h"
 
