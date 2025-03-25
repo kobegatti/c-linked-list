@@ -1,7 +1,7 @@
 # c-linked-list
 Linked List Data Structure and Functions in C
 
-make all - default target: build main and test
+make all - build main and test
 
 make build-main
 
