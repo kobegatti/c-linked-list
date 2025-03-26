@@ -1,5 +1,6 @@
 #ifndef UTILS_H 
 #define UTILS_H
+
 #define MAXLINE 31
 
 void printMenu(void);
@@ -15,4 +16,4 @@ int getLine(char s[], int lim); /* read a line into s, return length */
 
 int getIntFromString(int* i);
 
-#endif
+#endif // UTILS_H

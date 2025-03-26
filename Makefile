@@ -14,7 +14,7 @@ TEST = build/test/testLinkedList
 SRC_MAIN = main.c node.c utils.c
 OBJ_MAIN = $(patsubst %.c, build/main/%.o, $(SRC_MAIN))
 
-SRC_TEST = test.c node.c utils.c
+SRC_TEST = test.c node.c utils.c randomUtils.c
 OBJ_TEST = $(patsubst %.c, build/test/%.o, $(SRC_TEST))
 
 # Default target: build both main and test

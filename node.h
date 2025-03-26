@@ -1,6 +1,8 @@
 #ifndef NODE_H
 #define NODE_H
 
+#include "utils.h"
+
 #define APPEND 1
 #define INSERT 2
 #define DELETE 3
@@ -16,8 +18,6 @@
 #else
 	#define INDEX_OUT_OF_RANGE(index) do {} while (0)
 #endif
-
-#include "utils.h"
 
 typedef struct Node 
 {
@@ -46,4 +46,4 @@ Node* reverse(Node* head);
 
 int search(Node* head, char* id);
 
-#endif
+#endif // NODE_H

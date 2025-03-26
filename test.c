@@ -3,11 +3,20 @@
 #include <assert.h>
 #include <string.h>
 #include "node.h"
+#include "randomUtils.h"
+
+#define RAND_STR_LEN 9
+#define RAND_INT_MIN 0
+#define RAND_INT_MAX RAND_MAX
 
 //////////////////////////////////////////////////
 // Function Prototypes
 //////////////////////////////////////////////////
 void compareLists(Node* head, Node* expected);
+
+Node* generateRandomList(size_t len, int min, int max);
+
+void loadTestSort(size_t len, int min, int max);
 
 void testCreateNode(int val, char* s);
 
@@ -119,6 +128,11 @@ int main(void)
 	head = insert(insert(insert(insert(insert(NULL, 0, "Yoshi", 5), 1, "Wario", 3), 2, "Luigi", 2), 3, "Waluigi", 4), 4, "Mario", 1);
 	expected = append(append(append(append(append(NULL, "Mario", 1), "Luigi", 2), "Wario", 3), "Waluigi", 4), "Yoshi", 5);
 	testMergeSort(head, expected);
+
+	//loadTestSort(10, 0, 100);
+	//loadTestSort(100, 0, 100);
+	loadTestSort(1000000, 0, 1000000000);
+	//loadTestSort(100000000, 0, 1000000000); ~20 mins
 }
 
 void compareLists(Node* ptr1, Node* ptr2)
@@ -133,6 +147,38 @@ void compareLists(Node* ptr1, Node* ptr2)
 	}
 
 	assert(ptr1 == NULL && ptr2 == NULL);
+}
+
+Node* generateRandomList(size_t len, int min, int max)
+{
+	char randString[RAND_STR_LEN + 1];
+	generate_random_string(randString, RAND_STR_LEN);
+	int randInt = generate_random_int(min, max);
+
+	Node* head = createNode(randString, randInt);
+	Node* temp = head;
+	for (size_t i = 1; i < len; i++)
+	{
+		generate_random_string(randString, RAND_STR_LEN);
+		randInt = generate_random_int(min, max);
+
+		temp->next = createNode(randString, randInt);
+		temp = temp->next;
+	}
+
+	temp = NULL;
+	return head;
+}
+
+void loadTestSort(size_t len, int min, int max)
+{
+	Node* head = generateRandomList(len, min, max);
+
+	head = mergeSort(head);
+
+	#if DEBUG
+		printLinkedList(head);
+	#endif
 }
 
 void testCreateNode(int val, char* s)
