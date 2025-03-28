@@ -18,6 +18,8 @@ Node* findMiddle(Node* head);
 
 int freeLinkedList(Node* head); /* returns number of nodes freed */
 
+static int hasCycle(Node* head);
+
 Node* insert(Node* head, int index, char* id, int val);
 
 static Node* merge(Node* left, Node* right);
@@ -123,30 +125,24 @@ Node* findMiddle(Node* head)
 	return slow;
 }
 
+
+
 static Node* breakCycle(Node* head)
 {
-	Node* slow = head, *fast = head, *prev = NULL;
-
-	if (!head || !head->next) { return head; }
-
-	do
+	if (hasCycle(head))
 	{
-		slow = slow->next;
-		fast = fast->next->next;
-	} while (fast && fast->next && slow != fast);
+		Node* slow = head, *fast = head->next, *prev = NULL;
 
-	if (slow != fast) { return head; }
+		while (slow != fast)
+		{
+			prev = fast;
+			slow = slow->next;
+			fast = fast->next->next;
+		}
 
-	fast = fast->next;
-	while (slow != fast)
-	{
-		prev = fast;
-		slow = slow->next;
-		fast = fast->next->next;
+		head = prev->next;
+		prev->next = NULL;
 	}
-
-	head = prev->next;
-	prev->next = NULL;
 
 	return head;
 }
@@ -157,6 +153,7 @@ int freeLinkedList(Node* head)
 	int len = 0;
 
 	head = breakCycle(head);
+
 	ptr1 = head;
 	ptr2 = head;
 	
@@ -167,9 +164,25 @@ int freeLinkedList(Node* head)
 		ptr1 = ptr2;
 		len++;
 	}
+
 	head = NULL;
 	
 	return len;
+}
+
+static int hasCycle(Node* head)
+{
+	Node* slow = head, *fast = head;
+
+	while (fast && fast->next)
+	{
+		slow = slow->next;
+		fast = fast->next->next;
+
+		if (slow == fast) { return 1; }
+	}
+
+	return 0;
 }
 
 Node* insert(Node* head, int index, char* id, int val)
