@@ -1,5 +1,5 @@
 # c-linked-list
-Linked List Data Structure and Functions in C
+Linked List Data Structure and Algorithms in C
 
 DEBUG=1 - print debug output
 E.G. - make DEBUG=1 all; make DEBUG=1 run-test
