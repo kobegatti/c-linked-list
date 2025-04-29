@@ -16,7 +16,7 @@ void compareLists(Node* head, Node* expected);
 
 Node* generateRandomList(size_t len, int min, int max);
 
-void loadTestSort(size_t len, int min, int max);
+void stressTestSort(size_t len, int min, int max);
 
 void testCreateNode(int val, char* s);
 
@@ -129,10 +129,10 @@ int main(void)
 	expected = append(append(append(append(append(NULL, "Mario", 1), "Luigi", 2), "Wario", 3), "Waluigi", 4), "Yoshi", 5);
 	testMergeSort(head, expected);
 
-	//loadTestSort(10, 0, 100);
-	//loadTestSort(100, 0, 100);
-	loadTestSort(1000000, 0, 1000000000);
-	//loadTestSort(100000000, 0, 1000000000); ~20 mins
+	//stressTestSort(10, 0, 100);
+	//stressTestSort(100, 0, 100);
+	stressTestSort(1000000, 0, 1000000000);
+	//stressTestSort(100000000, 0, 1000000000); ~20 mins
 }
 
 void compareLists(Node* ptr1, Node* ptr2)
@@ -170,7 +170,7 @@ Node* generateRandomList(size_t len, int min, int max)
 	return head;
 }
 
-void loadTestSort(size_t len, int min, int max)
+void stressTestSort(size_t len, int min, int max)
 {
 	Node* head = generateRandomList(len, min, max);
 
