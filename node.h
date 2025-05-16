@@ -28,6 +28,8 @@ typedef struct Node
 
 Node* append(Node* head, char* id, int val);
 
+Node* breakCycle(Node* head);
+
 Node* createNode(char* id, int val);
 
 Node* deleteNode(Node* head, int index);
@@ -35,6 +37,8 @@ Node* deleteNode(Node* head, int index);
 Node* findMiddle(Node* head);
 
 int freeLinkedList(Node* head); /* returns number of nodes freed */
+
+int hasCycle(Node* head);
 
 Node* insert(Node* head, int index, char* id, int val);
 

@@ -36,6 +36,8 @@ void testFindMiddle(Node* head, Node* expected);
 
 void testMergeSort(Node* head, Node* expected);
 
+void testHasCycle(Node* head, int expected);
+
 
 //////////////////////////////////////////////////
 // Function Definitions 
@@ -49,7 +51,7 @@ int main(void)
 	testAppend(NULL, "Howdy", 5, 1);
 	testAppend(append(append(NULL, "Hi", 1), "Hey", 3), "Howdy", 5, 3);
 
-	// Test freeLinkedList
+	// Test freeLinkedList, hasCycle, and breakCycle
 	testFreeLinkedList(NULL, 0);
 	testFreeLinkedList(append(NULL, "K&R-C", 0), 1);
 	testFreeLinkedList(append(append(NULL, "K&R-C", 0), "Rust", 1), 2);
@@ -57,6 +59,9 @@ int main(void)
 	Node* p1 = fr;
 	while (p1->next) { p1 = p1->next; }
 	p1->next = fr; // create cycle
+	testHasCycle(fr, 1);
+	fr = breakCycle(fr);
+	testHasCycle(fr, 0);
 	testFreeLinkedList(fr, 3);
 
 	// Test insert
@@ -304,4 +309,9 @@ void testMergeSort(Node* head, Node* expected)
 
 	freeLinkedList(head);
 	freeLinkedList(expected);
+}
+
+void testHasCycle(Node* head, int expected)
+{
+	assert(hasCycle(head) == expected);
 }

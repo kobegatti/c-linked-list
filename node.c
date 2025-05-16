@@ -8,7 +8,7 @@
 //////////////////////////////////////////////////
 Node* append(Node* head, char* id, int val);
 
-static Node* breakCycle(Node* head);
+Node* breakCycle(Node* head);
 
 Node* createNode(char* id, int val);
 
@@ -18,7 +18,7 @@ Node* findMiddle(Node* head);
 
 int freeLinkedList(Node* head); /* returns number of nodes freed */
 
-static int hasCycle(Node* head);
+int hasCycle(Node* head);
 
 Node* insert(Node* head, int index, char* id, int val);
 
@@ -42,7 +42,7 @@ Node* append(Node* head, char* id, int val)
 {
 	Node* ptr = head;
 	
-	if (head == NULL)
+	if (NULL == head)
 	{
 		head = createNode(id, val);
 		return head;
@@ -70,13 +70,12 @@ Node* createNode(char* id, int val)
 
 Node* deleteNode(Node* head, int index)
 {
-	Node* curr = NULL;
-	Node* next = NULL;
+	Node* curr = NULL, *next = NULL;
 	int i = 0;
 
-	if (head == NULL) { return head; }
+	if (NULL == head) { return head; }
 
-	if (index == 0)
+	if (0 == index)
 	{
 		curr = head;
 		head = curr->next;
@@ -87,14 +86,14 @@ Node* deleteNode(Node* head, int index)
 
 	curr = head;
 	next = curr->next;
-	while (next && i < index - 1)
+	while (next && (i < index - 1))
 	{
 		curr = next;
 		next = next->next;
 		i++;
 	}
 
-	if (next && i == index - 1)
+	if (next && (index - 1 == i))
 	{
 		curr->next = next->next;
 		free(next);
@@ -125,9 +124,7 @@ Node* findMiddle(Node* head)
 	return slow;
 }
 
-
-
-static Node* breakCycle(Node* head)
+Node* breakCycle(Node* head)
 {
 	if (hasCycle(head))
 	{
@@ -170,7 +167,7 @@ int freeLinkedList(Node* head)
 	return len;
 }
 
-static int hasCycle(Node* head)
+int hasCycle(Node* head)
 {
 	Node* slow = head, *fast = head;
 
@@ -190,13 +187,13 @@ Node* insert(Node* head, int index, char* id, int val)
 	Node* newNode = NULL, *curr = NULL, *next = NULL;
 	int i = 0;
 
-	if (index < 0 || (head == NULL && index > 0))
+	if (index < 0 || (NULL == head && index > 0))
 	{
 		INDEX_OUT_OF_RANGE(index);
 		return head;
 	}
 
-	if (index == 0)
+	if (0 == index)
 	{
 		newNode = createNode(id, val);
 		newNode->next = head;
@@ -206,14 +203,14 @@ Node* insert(Node* head, int index, char* id, int val)
 
 	curr = head;
 	next = curr->next;
-	while (next && i < index - 1)
+	while (next && (i < index - 1))
 	{
 		curr = next;
 		next = next->next;
 		i++;
 	}
 
-	if (i == index - 1)
+	if (index - 1 == i)
 	{
 		newNode = createNode(id, val);
 		curr->next = newNode;
@@ -286,8 +283,7 @@ void printLinkedList(Node* head)
 
 Node* reverse(Node* head)
 {
-	Node* curr = head;
-	Node* end = NULL;
+	Node* curr = head, *end = NULL;
 
 	while (curr)
 	{
@@ -307,7 +303,7 @@ int search(Node* head, char* id)
 
 	while (ptr)
 	{
-		if (strcmp(ptr->id, id) == 0)
+		if (0 == strcmp(ptr->id, id))
 		{
 			return idx;
 		}
