@@ -131,7 +131,7 @@ static Node* breakCycle(Node* head)
 {
 	if (hasCycle(head))
 	{
-		Node* slow = head, *fast = head->next, *prev = NULL;
+		Node* prev = NULL, *slow = head, *fast = head->next;
 
 		while (slow != fast)
 		{

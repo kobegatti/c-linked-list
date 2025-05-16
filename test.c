@@ -99,13 +99,13 @@ int main(void)
 	Node* head = insert(insert(insert(NULL, 0, "A", 1), 1, "B", 2), 2, "C", 3);
 	Node* temp = head;
 	while (temp->next) { temp = temp->next; }
-	temp->next = head; // create cycle
+	temp->next = head; // cycle
 	testFindMiddle(head, createNode("B", 2));
 
 	head = insert(insert(insert(insert(NULL, 0, "A", 1), 1, "B", 2), 2, "C", 3), 3, "D", 4);
 	temp = head;
 	while (temp->next) { temp = temp->next; }
-	temp->next = head; // create cycle
+	temp->next = head; // cycle
 	testFindMiddle(head, createNode("B", 2));
 
 	// Test mergeSort
