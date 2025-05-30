@@ -7,7 +7,7 @@
 int main(void)
 {
 	Node* head = NULL;
-	char line[MAXLINE];
+	char line[MAXLINE] = {0};
 	int n = -1;
 	
 	while (n != EXIT)
@@ -17,11 +17,11 @@ int main(void)
 		printf("\nStarter-Linked-List:\n");
 		printMenu();
 
-		printf("Select an option: ");
-		while (getIntFromString(&n))
+		do
 		{
 			printf("Select an option: ");
 		}
+		while (getIntFromString(&n));
 
 		switch(n)
 		{
