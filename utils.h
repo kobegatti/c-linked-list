@@ -7,7 +7,7 @@ void printMenu(void);
 
 int getIndex(void);
 
-void getStringID(char buffer[], int lim);
+int getStringID(char buffer[], int lim);
 
 int getNodeValue(void);
 

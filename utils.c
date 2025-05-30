@@ -22,21 +22,23 @@ int getIndex(void)
 	while (idx < 0)
 	{
 		printf("Enter a node index (zero-based int): ");
+
 		while (getIntFromString(&idx))
 		{
 			printf("Enter a node index (zero-based int): ");
 		}
 	}
+
 	printf("Node index = %d\n", idx);
 
 	return idx;
 }
 
-void getStringID(char buffer[], int lim)
+int getStringID(char buffer[], int lim)
 {
 	printf("Enter a string id (%d char max): ", MAXLINE);
-	getLine(buffer, lim);
-	printf("Node id = %s\n", buffer);
+
+	return getLine(buffer, lim);
 }
 
 int getNodeValue(void)
@@ -44,10 +46,12 @@ int getNodeValue(void)
 	int val;
 
 	printf("Enter a node value (int): ");
+
 	while (getIntFromString(&val))
 	{
 		printf("Enter a node value (int): ");
 	}
+
 	printf("Node value = %d\n", val);
 
 	return val;

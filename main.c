@@ -26,16 +26,19 @@ int main(void)
 		switch(n)
 		{
 			case APPEND:
-				getStringID(line, MAXLINE);
-				val = getNodeValue();
+				while (getStringID(line, MAXLINE) <= 0);
+				printf("Node id = %s\n", line);
 
+				val = getNodeValue();
 				head = append(head, line, val);
 				break;
 			case INSERT:
 				idx = getIndex();
-				getStringID(line, MAXLINE);
-				val = getNodeValue();
 
+				while (getStringID(line, MAXLINE) <= 0);
+				printf("Node id = %s\n", line);
+
+				val = getNodeValue();
 				head = insert(head, idx, line, val);
 				break;
 			case DELETE:
@@ -50,7 +53,7 @@ int main(void)
 				head = reverse(head);
 				break;
 			case SEARCH:
-				getStringID(line, MAXLINE);
+				while (getStringID(line, MAXLINE) <= 0);
 				
 				idx = search(head, line);
 				if (idx < 0)
