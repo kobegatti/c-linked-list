@@ -23,7 +23,7 @@ int main(void)
 		}
 		while (getIntFromString(&n));
 
-		switch(n)
+		switch (n)
 		{
 			case APPEND:
 				while (getStringID(line, MAXLINE) <= 0);
